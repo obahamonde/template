@@ -48,43 +48,44 @@ const menu = reactive({
             {
                 "name": "Python",
                 "icon": "logos:python",
-                "demo": "/videos/python.mp4"
+                "demo": "/videos/python.mp4",
+                "visible": false
             },
             {
                 "name": "Typescript",
                 "icon": "logos:typescript-icon",
-                "demo": "/videos/typescript.mp4"
+                "visible": false
             },
             {
                 "name": "Vue",
                 "icon": "logos:vue",
-                "demo": "/videos/vue.mp4"
+                "visible": false
             },
             {
                 "name": "FastAPI",
                 "icon": "simple-icons:fastapi",
-                "demo": "/videos/fastapi.mp4"
+                "visible": false
             },
             {
                 "name": "SQL",
                 "icon": "logos:postgresql",
-                "demo": "/videos/sql.mp4"
+                "visible": false
             },
             {
                 "name": "Docker",
                 "icon": "logos:docker-icon",
-                "demo": "/videos/docker.mp4"
+                "visible": false
 
             },
             {
                 "name": "AWS",
                 "icon": "logos:aws",
-                "demo": "/videos/aws.mp4"
+                "visible": false
             },
             {
                 "name": "GCP",
                 "icon": "logos:google-cloud",
-                "demo": "/videos/gcp.mp4"
+                "visible": false
             }
         ]
     },
@@ -117,6 +118,7 @@ const showDetails = (which: string) => {
             menu.experience.show = !menu.experience.show
             menu.education.show = !menu.education.show
             menu.projects.show = !menu.projects.show
+            currentData.value.length > 0 ? currentData.value = [] : currentData.value = menu.skills.data
             break;
         case 'projects':
             menu.experience.show = !menu.experience.show
@@ -180,7 +182,7 @@ const showDetails = (which: string) => {
         </section>
 
     </div>
-    <section grid2 m-4 p-4 gap-4>
+    <section grid2 m-4 p-4 gap-4 v-if="menu.experience.show">
         <div v-for="item in currentData" :key="item.company" col center>
             <div col center w-64 pb-4 px-4 bg-success rounded-lg>
                 <img :src="item.logo" x8 />
@@ -192,6 +194,23 @@ const showDetails = (which: string) => {
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <section v-if="menu.skills.show" grid3 m-4 p-4 gap-8>
+        <div v-for="item in currentData" :key="item.name" col center>
+            <div col center rounded-lg>
+                <h1>{{item.name}}</h1>
+                <Ico :icon="item.icon" x2 @click="item.visible=!item.visible" cp />
+                <div :hidden="!item.visible" v-if="item.demo">
+                    <div> <video fade-in-up :src="item.demo" controls controlsList="nodownload" />
+                        <Ico icon="mdi-close" @click="item.visible=!item.visible" cp x2 bg-danger text-light rf p-1
+                            shadow fade-in scale />
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </section>
 </template>

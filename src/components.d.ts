@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Auth: typeof import('./components/Auth.vue')['default']
+    Calendar: typeof import('./components/Calendar.vue')['default']
     Chat: typeof import('./components/Chat.vue')['default']
     Cli: typeof import('./components/Cli.vue')['default']
     Clock: typeof import('./components/Clock.vue')['default']
