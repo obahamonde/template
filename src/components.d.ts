@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     Loading: typeof import('./components/Loading.vue')['default']
     Music: typeof import('./components/Music.vue')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
+    PipSearch: typeof import('./components/PipSearch.vue')['default']
     Product: typeof import('./components/Product.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
