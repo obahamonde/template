@@ -88,7 +88,7 @@ function prevPage() {
 
             </div>
             <div row center mt-6 v-if="(unref(results).length > 0)">
-                <Ico icon="mdi-chevron-left" text-xl mx-1 text-secondary cp dark:text-success v-if="page > 0"
+                <Ico icon="mdi-chevron-left" text-xl mx-1 text-secondary cp dark:text-success v-if="page > 1"
                     @click="prevPage" />
                 <span v-if="page>0">{{ page }}</span>
                 <Ico icon="mdi-chevron-right" text-xl mx-1 text-secondary cp dark:text-success v-if="page < 10"

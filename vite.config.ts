@@ -51,6 +51,7 @@ export default defineConfig({
         "vue/macros",
         "@vueuse/head",
         "@vueuse/core",
+        "@auth0/auth0-vue"
       ],
       dts: "src/auto-imports.d.ts",
       dirs: ["src/hooks", "src/store"],
