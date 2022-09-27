@@ -50,8 +50,7 @@ export default defineConfig({
         "vue-router",
         "vue/macros",
         "@vueuse/head",
-        "@vueuse/core",
-        "@auth0/auth0-vue"
+        "@vueuse/core"
       ],
       dts: "src/auto-imports.d.ts",
       dirs: ["src/hooks", "src/store"],

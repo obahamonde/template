@@ -136,7 +136,7 @@ const showDetails = (which: string) => {
         <h2>If you are in a hurry, you can find my resume <a font-bold underline scale hover:text-teal
                 href="/cv.pdf">Here</a></h2>
         <section col center>
-            <img src="images/ob.png" animate-fade-in x8 rf scale shadow bg-success cp @click="menuActive=!menuActive" />
+            <img src="/images/ob.png" animate-fade-in x8 rf scale shadow bg-success cp @click="menuActive=!menuActive" />
         </section>
     </header>
     <nav class v-if="menuActive" row center mt-4 fade-in>

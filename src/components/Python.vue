@@ -1,5 +1,9 @@
 <template>
+
     <div row>
+        <button z-50 bl m-4 fixed btn-post row gap-2 center  @click="testCode" >Test <Ico icon="file-icons:test-python" text-success cp hover:animate-ping 
+           
+            /></button>
         <div class="w-1/2">
             <prism-editor class="my-editor " v-model="editorCode" :highlight="highlighter" line-numbers>
             </prism-editor>
@@ -13,16 +17,17 @@
 // import Prism Editor
 import { PrismEditor } from "vue-prism-editor"; //
 import "vue-prism-editor/dist/prismeditor.min.css"; // import the styles somewhere
-
 // import highlighting library (you can use any library you want just return html string)
 import prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css"; // import syntax highlighting styles
 const { data } = useFetch("/api/python").text()
 const editorCode = ref(data)
 const url = computed(() => {
-    return "data:text/html;charset=utf-8," + encodeURIComponent(editorCode.value);
-});
+    return "data:text/x-python;charset=utf-8," + encodeURIComponent(editorCode.value)
+})
+
 const highlighter = (code) => { return prism.highlight(code, prism.languages.js); };
+const testCode = ()=>{alert(editorCode.value)}
 </script>
 <style>
 .my-editor {
@@ -48,3 +53,8 @@ const highlighter = (code) => { return prism.highlight(code, prism.languages.js)
     margin-bottom: 1rem;
 }
 </style>
+
+<route lang="yaml">
+    meta:
+      layout: code
+    </route>

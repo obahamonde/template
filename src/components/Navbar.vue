@@ -34,6 +34,10 @@ const { isAuthenticated } = useAuth0();
         <RouterLink m-4 to="/editor" title="Code Editor">
           <Ico icon="mdi-xml" />
         </RouterLink>
+        <RouterLink m-4 to="/translate" title="Translator">
+          <Ico icon="mdi-translate" />
+        </RouterLink>
+        
         <button m-4 title="ToggleDark" @click="toggleDark()">
           <div m-4 col center z-50 text-xl scale-75>
             <div i="carbon-sun dark:carbon-moon" />
