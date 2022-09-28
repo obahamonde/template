@@ -8,9 +8,7 @@ const { isAuthenticated } = useAuth0();
     <nav col items-center>
 
       <div col center>
-        <Auth />
-
-        <RouterLink m-4 to="/" title="Home">
+            <RouterLink m-4 to="/" title="Home">
           <div i-carbon-home />
         </RouterLink>
 
@@ -26,18 +24,21 @@ const { isAuthenticated } = useAuth0();
         <RouterLink m-4 to="/contact" title="Contact">
           <Ico icon="mdi-email" />
         </RouterLink>
-        <div v-if="isAuthenticated">
+        <div v-if="isAuthenticated" col center>
           <RouterLink m-4 to="/workspace" title="Workspace">
             <Ico icon="mdi-cloud" />
           </RouterLink>
-        </div>
+      
         <RouterLink m-4 to="/editor" title="Code Editor">
           <Ico icon="mdi-xml" />
         </RouterLink>
         <RouterLink m-4 to="/translate" title="Translator">
           <Ico icon="mdi-translate" />
         </RouterLink>
-        
+        <RouterLink m-4 to="/poll" title="Poll">
+          <Ico icon="mdi-poll" />
+        </RouterLink>
+      </div> 
         <button m-4 title="ToggleDark" @click="toggleDark()">
           <div m-4 col center z-50 text-xl scale-75>
             <div i="carbon-sun dark:carbon-moon" />

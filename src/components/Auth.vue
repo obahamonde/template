@@ -16,6 +16,6 @@ onMounted(() => {
 </script>
 
 <template>
-    <Ico icon="mdi-login" className="m-4 x2 scale-75 cp hover:text-success scale" @click="login()"
-        v-if="!isAuthenticated" />
+    <Ico icon="mdi-login" className="br fixed text-secondary m-4 x2 scale-75 cp hover:text-success scale animate-bounce" @click="login()"
+        v-if="!isAuthenticated" title="Login" />
 </template>

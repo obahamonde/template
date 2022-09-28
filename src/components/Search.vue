@@ -84,12 +84,12 @@ function toFrench() {
 </script>
 <template>
     <div col
-        :class="!toggle ? 'bg-gray-500 p-2 rf tr fixed m-4 mt-12':'w-auto z-50 shadow-lg shadow-gray-500 rounded-xl max-w-58 m-auto p-1'">
+        :class="!toggle ? 'bg-gray-500 p-2 rf tr fixed m-4 mt-12':'z-50 shadow-lg shadow-gray-500 rounded-xl p-1 top-12 max-w-64 m-auto translate-x-212 fixed'">
         <div col center>
-            <div row center border-gray-500 b-2 rounded-xl hover-bg-transparent>
+            <div  row center border-gray-500 b-2 rounded-xl hover-bg-transparent backdrop-blur-md p-1>
                 <div i-carbon-search cp scale @click.prevent="handleToggle"
                     :class="!toggle ? 'text-white p-2 rf':'text-secondary'" />
-                <h1 row v-if="toggle" fade-in-left><input type="search" bg-transparent no-outline text-secondary
+                <h1 row v-if="toggle" fade-in-left ><input type="search"  bg-transparent no-outline text-secondary
                         dark:text-primary v-model="search" @keyup.enter="searchQuery" @keyup.escape="handleToggle" />
                     <span row center>
                         <Ico icon="mdi-microphone" text-xl text-secondary cp dark:text-primary v-if="!isListening"
@@ -121,9 +121,9 @@ function toFrench() {
 
             </label>
         </div>
-        <div v-if="search">
-            <div v-for="r in unref(results)" col>
-                <a :href="r.url" text-xs underline m-2 hover:text-primary>{{ r.title }}</a>
+        <div v-if="search" col >
+            <div v-for="r in unref(results)" col >
+                <a :href="r.url" text-xs underline m-2 text-success hover:text->{{ r.summary }}</a>
             </div>
             <div row center mt-6 v-if="(unref(results).length > 0)">
                 <Ico icon="mdi-chevron-left" text-xl mx-1 text-secondary cp dark:text-primary v-if="page > 0"

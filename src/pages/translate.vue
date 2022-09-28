@@ -5,8 +5,11 @@ const translated = ref() as Ref<any>
 const source = ref()
 const target = ref()
 
+const pattern = new RegExp(/^[^\s]+$/)
+
+
 const translate = async () => {
-    translated.value = useFetch("/api/translate/" + source.value + "/" + target.value + "/" + text.value).json().data
+    translated.value = text.value ? useFetch("/api/translate/" + source.value + "/" + target.value + "/" + text.value).json().data : ''
 }
 
 watchEffect(() => {
@@ -16,32 +19,31 @@ watchEffect(() => {
 
 const fromFrench = () => {
     source.value = 'fr'
-    text.value ? translate() : null
+    pattern.test(text.value) ? translate() : null
 }
 
 const toFrench = () => {
     target.value = 'fr'
-    text.value ? translate() : null
+    pattern.test(text.value) ? translate() : null
 }
 
 const fromEnglish = () => {
     source.value = 'en'
-    text.value ? translate() : null
+    pattern.test(text.value) ? translate() : null
 }
 
 const toEnglish = () => {
     target.value = 'en'
-    text.value ? translate() : null
+    pattern.test(text.value) ? translate() : null
 }
 
 const fromSpanish = () => {
     source.value = 'es'
-    text.value ? translate() : null
+    pattern.test(text.value) ? translate() : null
 }
-
 const toSpanish = () => {
     target.value = 'es'
-    translate()
+    pattern.test(text.value) ? translate() : null
 }
 
 const translator = computed(() => {
@@ -56,8 +58,8 @@ const translator = computed(() => {
 })
 </script>
 <template>
-    <h1 col center text-4xl font-script m-8 text-secondary fade-in-down>{{translator}}</h1>
-    <section row center gap-4 rounded-xl shadow bg-success class="w-1/2 mx-auto" fade-in-up>
+    <h1 col center text-4xl dark:text-success font-script m-8 text-secondary fade-in-down>{{translator}}</h1>
+    <section row center gap-4 rounded-xl shadow bg-secondary dark:bg-accent class="w-1/2 mx-auto" fade-in-up>
         <div col center h-96 w-72>
             <h1 row gap-4>
                 <img src="/images/fr.svg" @click="fromFrench" cp scale hover:shadow
@@ -74,13 +76,19 @@ const translator = computed(() => {
         <div col center>
             <h1 row gap-4>
                 <img src="/images/fr.svg" @click="toFrench" cp scale hover:shadow
-                    :class="target=='fr' ? 'shadow' : ''" />
+                    :class="target=='fr' ? 'shadow' : ''"
+                    :hidden="source=='fr'"
+                    />
                 <img src="/images/us.svg" @click="toEnglish" cp scale hover:shadow
-                    :class="target=='en' ? 'shadow' : ''" />
+                    :class="target=='en' ? 'shadow' : ''" 
+                    :hidden="source=='en'"
+                    />
                 <img src="/images/pe.svg" @click="toSpanish" cp scale hover:shadow
-                    :class="target=='es' ? 'shadow' : ''" />
+                    :class="target=='es' ? 'shadow' : ''"
+                    :hidden="source=='es'"
+                    />
             </h1>
-            <div col start p-2 b-2 border-black border-dashed m-4 h-64 w-72 rounded-lg bg-white v-if="translated!=''"
+            <div col start p-2 b-2 border-black border-dashed m-4 h-64 w-72 rounded-lg bg-white dark:bg="#3B3B3B" dark:text-white v-if="translated!=''"
                 placeholder="Translated text">
                 {{ translated }}
             </div>

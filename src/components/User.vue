@@ -15,8 +15,12 @@ const chat = ref(false)
             </RouterLink>
             <Ico icon="mdi-chat" x2 @click="chat = !chat" cp text-secondary hover:text-success />
         </ul>
-    </div>
-    <div v-if="chat">
+        <div v-if="chat">
         <Chat @close="chat = false" />
     </div>
+    </div>
+    <div v-else>
+        <Auth />
+    </div>
+  
 </template>

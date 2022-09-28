@@ -52,7 +52,7 @@ export default defineConfig({
     ['fade-in-left', 'animate-fade-in-left animate-duration-300'],
     ['fade-in-right', 'animate-fade-in-right animate-duration-300'],
     ['no-outline', 'outline-none focus:outline-none hover:outline-none'],
-    ['toast', ' tr mt-16 row rounded-lg  shadow-primary sh-lg z-50 fixed p-4'],
+    ['toast', ' tr mt-32 row rounded-lg  shadow-primary sh-lg z-50 fixed p-4'],
     ['shadow', 'shadow-gray-500 shadow-md'],
     ['circle', 'rounded-full cp shadow scale']
   ],

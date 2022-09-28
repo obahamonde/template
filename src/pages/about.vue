@@ -52,8 +52,8 @@ const menu = reactive({
                 "visible": false
             },
             {
-                "name": "Typescript",
-                "icon": "logos:typescript-icon",
+                "name": "FastAPI",
+                "icon": "simple-icons:fastapi",
                 "visible": false
             },
             {
@@ -62,13 +62,13 @@ const menu = reactive({
                 "visible": false
             },
             {
-                "name": "FastAPI",
-                "icon": "simple-icons:fastapi",
+                "name": "Tailwind",
+                "icon": "logos:tailwindcss-icon",
                 "visible": false
             },
             {
-                "name": "SQL",
-                "icon": "logos:postgresql",
+                "name": "Typescript",
+                "icon": "logos:typescript-icon",
                 "visible": false
             },
             {
@@ -78,10 +78,16 @@ const menu = reactive({
 
             },
             {
+                "name": "SQL",
+                "icon": "logos:postgresql",
+                "visible": false
+            },
+            {
                 "name": "AWS",
                 "icon": "logos:aws",
                 "visible": false
             },
+            
             {
                 "name": "GCP",
                 "icon": "logos:google-cloud",
