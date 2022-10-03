@@ -100,7 +100,7 @@ function toFrench() {
                 </h1>
             </div>
         </div>
-        <div row center pb-2 v-if="search" fade-in-down mt-2> <label :id="lang" class="radio">
+        <div row center pb-2 v-if="search" fade-in-down mt-2 col backdrop-blur-lg> <label :id="lang" class="radio">
                 <input v-model="lang" value="en" type="radio" hidden>
                 <img src="/images/us.svg" mx-1 cp scale @click="toEnglish"
                     :class="{ 'shadow-black scale-125 dark:shadow-white shadow-md': lang === 'en' }" />
@@ -121,7 +121,7 @@ function toFrench() {
 
             </label>
         </div>
-        <div v-if="search" col >
+        <div v-if="search" col backdrop-blur-lg >
             <div v-for="r in unref(results)" col >
                 <a :href="r.url" text-xs underline m-2 text-success hover:text->{{ r.summary }}</a>
             </div>

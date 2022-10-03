@@ -28,7 +28,6 @@ const { isAuthenticated } = useAuth0();
           <RouterLink m-4 to="/workspace" title="Workspace">
             <Ico icon="mdi-cloud" />
           </RouterLink>
-      
         <RouterLink m-4 to="/editor" title="Code Editor">
           <Ico icon="mdi-xml" />
         </RouterLink>
