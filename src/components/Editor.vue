@@ -9,13 +9,9 @@
 </template>
 
 <script>
-// import Prism Editor
-import { PrismEditor } from "vue-prism-editor"; //
-import "vue-prism-editor/dist/prismeditor.min.css"; // import the styles somewhere
-
-// import highlighting library (you can use any library you want just return html string)
+import { PrismEditor } from "vue-prism-editor";
 import prism from "prismjs";
-import "prismjs/themes/prism-tomorrow.css"; // import syntax highlighting styles
+
 
 import { defineComponent, onMounted, ref } from "vue";
 export default defineComponent({
@@ -26,6 +22,7 @@ export default defineComponent({
         const editorCode = ref("<h1 class='title'>Hello World!</h1><style>.title{color:purple;font-size:3rem;text-align:center;margin-top:6rem;}</style>")
         const highlighter = (code) => {
             return prism.highlight(code, prism.languages.js);
+            
         };
         return { editorCode, highlighter };
     },

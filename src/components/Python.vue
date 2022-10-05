@@ -1,19 +1,19 @@
 <template>
 
-    <div row>
-        <button z-50 bl m-4 fixed btn-post row gap-2 center  @click="testCode" >Test <Ico icon="file-icons:test-python" text-success cp hover:animate-ping 
-           
-            /></button>
+    <div row h-screen v-if="editorCode">
         <div class="w-1/2">
             <prism-editor class="my-editor " v-model="editorCode" :highlight="highlighter" line-numbers>
             </prism-editor>
         </div>
         <iframe class="w-1/2" :src="url" frameborder="0" allowfullscreen></iframe>
     </div>
+    <div v-else >
+        <Loading />
+    </div>
 
 </template>
 
-<script setup lang="ts">
+<script setup>
 // import Prism Editor
 import { PrismEditor } from "vue-prism-editor"; //
 import "vue-prism-editor/dist/prismeditor.min.css"; // import the styles somewhere
@@ -27,7 +27,6 @@ const url = computed(() => {
 })
 
 const highlighter = (code) => { return prism.highlight(code, prism.languages.js); };
-const testCode = ()=>{alert(editorCode.value)}
 </script>
 <style>
 .my-editor {
@@ -53,8 +52,3 @@ const testCode = ()=>{alert(editorCode.value)}
     margin-bottom: 1rem;
 }
 </style>
-
-<route lang="yaml">
-    meta:
-      layout: code
-    </route>

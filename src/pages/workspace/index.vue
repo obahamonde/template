@@ -1,11 +1,16 @@
 <template>
-    <Upload bg-transparent p-4 rounded-lg b-2 border-dashed border-gray-500 shadow-light shadow-md cp @upload="onUpload"
-        bl fixed m-4 hover:border-solid />
-    <section grid4 p-16 gap-8>
-        <div v-for="upload in unref(uploads)" col center>
-
-            <img :src="upload" h-32 />
+    <Upload 
+    @upload="onUpload"
+    />
+    <section grid4 p-8 ml-74 gap-2 b-2 h-screen >
+        <div v-for="upload in unref(uploads)" col start >
             <Ico icon="mdi-delete" @click="onDelete(upload)" cp x1 scale hover:text-danger />
+            <img :src="upload" h-32 v-if="upload.endsWith('.png') || upload.endsWith('.jpg') || upload.endsWith('.jpeg') || upload.endsWith('.gif') || upload.endsWith('.svg')" />
+            <audio :src="upload" controls v-else-if="upload.endsWith('.mp3') || upload.endsWith('.wav') || upload.endsWith('.ogg')" />
+            <video :src="upload" controls v-else-if="upload.endsWith('.mp4') || upload.endsWith('.webm') || upload.endsWith('.ogg')" />
+            <iframe :src="upload" frameborder="0" v-else-if="upload.endsWith('.pdf')" />
+            <a :href="upload" target="_blank" class="text-secondary hover:text-success" v-else ><Ico icon='mdi-file' x6 /></a>         
+            <span text-xs>{{ upload.slice(upload.lastIndexOf('/') + 1) }}</span>
         </div>
     </section>
 </template>

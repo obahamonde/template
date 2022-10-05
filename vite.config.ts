@@ -22,7 +22,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://gbod6ls7puxrkclwkqkdrslnde0vrvlk.lambda-url.us-east-1.on.aws/api',
+        target: 'https://smartpro.solutions/api',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       }

@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-vue';
 import { Ref } from 'vue';
 const files = ref([]) as Ref<File[]>;
 const filesPreview = ref([]) as Ref<any[]>;
-const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+const { user, isAuthenticated } = useAuth0();
 const timeout = 5;
 const _show = ref(false);
 const emit = defineEmits(['upload']);
@@ -31,12 +31,9 @@ const onSubmit = async (e: any) => {
   files.value.forEach(async (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    const response = await useFetch('/api/upload', {
+    const response = await useFetch('/api/upload/' + user.value.sub, {
       method: 'POST',
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${await getAccessTokenSilently()}`,
-      },
+      body: formData
     }).json()
     urls.value = response.data as any;
     _show.value = true;
@@ -72,7 +69,8 @@ const onDrop = (e: any) => {
 };
 </script>
 <template>
-  <div v-if="isAuthenticated">
+  <div v-if="isAuthenticated" class="mb-16 mt-16 w-72 col center bg-transparent p-1 
+    shadow-light shadow-md cp tl fixed m-1 hover:border-solid" @upload="onUpload" >
     <div>
       <form @submit.prevent="onSubmit">
         <div row>
@@ -82,7 +80,7 @@ const onDrop = (e: any) => {
             ' KB' :
             'Upload files'
             }}
-            <input type="file" id="files" hidden @change="onFileChange" multiple accept="image/*" /></label>
+            <input type="file" id="files" hidden @change="onFileChange" multiple accept="*/*" /></label>
           <div v-if="filesPreview.length > 0" row center>
             <label for="submit" @click="onSubmit" btn-post mx-2>Submit</label>
             <input type="submit" id="submit" hidden />
@@ -91,15 +89,20 @@ const onDrop = (e: any) => {
         </div>
       </form>
       <div>
-        <ul grid grid-cols-4>
-          <li v-for="(file, index) in filesPreview" bg-transparent p-2 col center m-4 rounded-lg shadow>
+        <ul grid3 >
+          <li v-for="(file, index) in filesPreview" class="bg-transparent p-1 col center m-2 rounded-lg shadow" >
             <button @click="filesPreview.splice(index, 1)">
-              <Ico icon="mdi-delete" cp x1 scale hover:text-danger />
+              <Ico icon="mdi-delete" class="cp x1 scale hover:text-danger" />
             </button>
-            <img :src="file.src" x12 />
-            <div text-xs font-sans>{{ file.name }}</div>
-            <h2 text-xs font-serif>{{ (file.size / 1024).toFixed(2) }} KB</h2>
-            <h3 text-xs font-mono>{{ file.type }}</h3>
+            <img :src="file.src" x4 v-if="file.type.startsWith('image')" />
+            <audio :src="file.src" controls v-else-if="file.type.startsWith('audio')" />
+            <video :src="file.src" controls v-else-if="file.type.startsWith('video')" />
+            <div v-else>
+              <Ico icon="mdi-file" cp x4 scale />
+              </div>
+              <div text-xs font-sans>{{ file.name.substring(0,8)+'...' }}</div>
+            <h2 text-xs font-serif scale-80>{{ (file.size / 1024).toFixed(2) }} KB</h2>
+            <h3 text-xs font-mono scale-80 >{{ file.type }}</h3>
 
           </li>
         </ul>

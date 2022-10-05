@@ -105,7 +105,7 @@ const menu = reactive({
 
 
 
-const currentData = ref([])
+const currentData = ref([] as any)
 
 const showDetails = (which: string) => {
     switch (which) {

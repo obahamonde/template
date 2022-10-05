@@ -5,6 +5,8 @@ import type { UserModule } from './types'
 import generatedRoutes from '~pages'
 
 import '@unocss/reset/tailwind.css'
+import "vue-prism-editor/dist/prismeditor.min.css";
+import "prismjs/themes/prism-tomorrow.css";
 import './styles/main.css'
 import 'uno.css'
 
